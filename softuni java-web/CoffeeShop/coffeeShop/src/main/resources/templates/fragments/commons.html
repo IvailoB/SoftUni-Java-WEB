@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Spotify playlist App</title>
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info rounded">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li th:if="${!@loggedUser.isLogged()}" class="nav-item">
+                    <a class="nav-link" href="/users/login">Login</a>
+                </li>
+                <li th:if="${!@loggedUser.isLogged()}" class="nav-item">
+                    <a class="nav-link" href="/users/register">Register</a>
+                </li>
+                <li th:if="${@loggedUser.isLogged()}" class="nav-item">
+                    <a class="nav-link" href="/order/add">Add Order</a>
+                </li>
+                <li th:if="${@loggedUser.isLogged()}" class="nav-item">
+                    <a class="nav-link" href="/users/logout">Logout</a>
+                </li>
+            </ul>
+            <img width="50px" src="/images/coffee.png" alt="Coffee image">
+        </div>
+    </nav>
+</header>
+
+<footer class="container">
+    <p>&copy;SoftUni Spring Team 2021. All rights reserved.</p>
+</footer>
+</body>
+</html>
