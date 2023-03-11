@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="../static/css/register.css">
+</head>
+<body>
+
+
+<header th:replace="fragments/common::header">
+</header>
+
+<div class="register-container">
+    <h1>User Registration</h1>
+    <form>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" minlength="8" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" minlength="8" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+
+<section th:replace="foragments/common::footer">
+</section>
+
+<!-- Link to JS -->
+<script src="/static/main.js"></script>
+
+</body>
+</html>

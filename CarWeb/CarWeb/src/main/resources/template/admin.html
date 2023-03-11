@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Panel</title>
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <!-- JavaScript files -->
+</head>
+<body>
+<header th:replace="fragments/common::header">
+</header>
+<main>
+    <section class="dashboard">
+        <h2>Dashboard</h2>
+        <p>Welcome to the admin panel. Here you can manage the data and functionality of the application.</p>
+    </section>
+    <section class="users">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>John Smith</td>
+                <td>john@example.com</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Doe</td>
+                <td>jane@example.com</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <section class="ad">
+        <h2>All ad</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>User email</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Price</th>
+                <th>Km</th>
+                <th>Year</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Cope</th>
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>john@example.com</td>
+                <td>Audi</td>
+                <td>A7</td>
+                <td>24 000 EUR</td>
+                <td>189 000</td>
+                <td>2012</td>
+                <td>Sofia, Bulgaria</td>
+                <td>Lorem ipsum dolor sit amet consectetur.</td>
+                <td>Sedan</td>
+                <td>GOOD</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>john@example.com</td>
+                <td>Audi</td>
+                <td>A7</td>
+                <td>24 000 EUR</td>
+                <td>189 000</td>
+                <td>2012</td>
+                <td>Sofia, Bulgaria</td>
+                <td>Lorem ipsum dolor sit amet consectetur.</td>
+                <td>Sedan</td>
+                <td>GOOD</td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <section class="content">
+        <h2>Content</h2>
+        <!-- Content management tools go here -->
+    </section>
+    <section class="settings">
+        <h2>Settings</h2>
+        <!-- Settings management tools go here -->
+    </section>
+</main>
+
+</body>
+</html>

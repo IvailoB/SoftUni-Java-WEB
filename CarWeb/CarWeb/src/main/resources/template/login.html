@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
+
+  <header th:replace="fragments/common::header">
+</header>
+
   <div class="login-container">
     <h1>Login</h1>
     <form>
@@ -19,5 +24,11 @@
       <button type="submit">Login</button>
     </form>
   </div>
+
+  <section th:replace="foragments/common::footer">
+</section>
+
+<!-- Link to JS -->
+<script src="/static/main.js"></script>
 </body>
 </html>
