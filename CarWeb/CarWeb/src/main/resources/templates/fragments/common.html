@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/common.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+
+<header th:fragment="navigation">
+
+        <div class="nav container">
+
+            <i class='bx bx-menu' id="menu-icon"></i>
+
+            <a href="/" class="logo">Car <span>Point</span></a>
+
+            <ul class="navbar">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="admin">Admin panel</a></li>
+                <li><a href="add-car">Add Car</a></li>
+                <li><a href="register">Register</a></li>
+                <li><a href="login">Login</a></li>
+                <li><a href="profile">Profile</a></li>
+                <li><a href="logout">Logout</a></li>
+
+            </ul>
+
+            <i class='bx bx-search' id="search-icon"></i>
+
+            <div class="search-box container">
+                <input type="search" name="" id="" placeholder="Search here...">
+            </div>
+
+        </div>
+
+</header>
+
+    <th:block th:fragment="footer">
+        <section  class="footer">
+            <div class="footer-container container">
+                <div class="footer-box">
+                    <a href="#" class="logo">Car <span>Point</span></a>
+                    <div class="social">
+                        <a href="#"><i class='bx bxl-facebook'></i></a>
+                        <a href="#"><i class='bx bxl-instagram'></i></a>
+                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                    </div>
+                </div>
+                <div class="footer-box">
+                    <h3>Page</h3>
+                    <a href="#">Home</a>
+                    <a href="#">Cars</a>
+                    <a href="#">Sales</a>
+                </div>
+                <div class="footer-box">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy</a>
+                    <a href="#">Refund Policy</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <div class="footer-box">
+                    <h3>Contact</h3>
+                    <a>Bulgaria</a>
+                    <a>Germany</a>
+                    <a>United States</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="copyright">
+            <p>&#169; Thank you for visited my website</p>
+        </div>
+        <!-- Link to JS -->
+        <script src="/main.js"></script>
+    </th:block>
+
+</body>
+</html>

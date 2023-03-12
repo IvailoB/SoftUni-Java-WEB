@@ -3,11 +3,12 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="../static/css/login.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
-  <header th:replace="fragments/common::header">
+  <header th:replace="/fragments/common::navigation">
 </header>
 
   <div class="login-container">
@@ -25,10 +26,10 @@
     </form>
   </div>
 
-  <section th:replace="foragments/common::footer">
+  <section th:replace="/fragments/common::footer">
 </section>
 
 <!-- Link to JS -->
-<script src="/static/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

@@ -3,12 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Registration</title>
-    <link rel="stylesheet" href="../static/css/register.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
 
 
-<header th:replace="fragments/common::header">
+<header th:replace="/fragments/common::navigation">
 </header>
 
 <div class="register-container">
@@ -35,11 +36,8 @@
 </div>
 
 
-<section th:replace="foragments/common::footer">
+<section th:replace="/fragments/common::footer">
 </section>
-
-<!-- Link to JS -->
-<script src="/static/main.js"></script>
 
 </body>
 </html>

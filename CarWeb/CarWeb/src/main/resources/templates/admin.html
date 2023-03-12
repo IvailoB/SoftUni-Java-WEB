@@ -4,11 +4,13 @@
 <head>
     <title>Admin Panel</title>
     <!-- CSS stylesheets -->
-    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <!-- JavaScript files -->
 </head>
 <body>
-<header th:replace="fragments/common::header">
+<header th:replace="/fragments/common::navigation">
 </header>
 <main>
     <section class="dashboard">
@@ -119,6 +121,7 @@
         <!-- Settings management tools go here -->
     </section>
 </main>
+<script src="/main.js"></script>
 
 </body>
 </html>
