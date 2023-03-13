@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/index.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Car Shop</title>
+</head>
+
+<body>
+
+    <header th:replace="fragments/common::navigation">
+
+    </header>
+
+    <section class="home" id="home">
+        <div class="bg-img">
+            <img src="/image/homeimg.jpg">
+        </div>
+        <div class="home-text">
+            <h1>We Have Everything <br>Your <span>Car</span> Need</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deleniti <br> tempore, molestiae iste
+                velit corporis
+            </p>
+
+            <a href="#" class="btn">Discover Now</a>
+        </div>
+    </section>
+
+    <section class="cars" id="my-cars">
+        <div class="heading">
+            <span th:text="|My Cars: ${currentUserInfo.username}|"></span>
+            </div>
+
+        <div class="cars-container container">
+            <div th:each="car : ${userCars}" th:object="${car}" class="box">
+                <img src="/image/rols.jpg" alt="">
+                <h2 th:text="|*{make} *{model}| "> MAke MODEL</h2>
+                <h2 th:text="*{status} ">STATUS</h2>
+                <h2 th:text="|*{price} €|">PRICE</h2>
+                <a class="btn-danger btn"
+                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</a>
+            </div>
+            <div class="box">
+                <img src="/image/rols.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="cars" id="cars">
+        <div class="heading">
+            <span>All Cars</span>
+            <h2>We have all types cars</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, consequatur.</p>
+        </div>
+
+        <div class="cars-container container">
+            <div class="box">
+                <img src="/image/car3.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+            <div class="box">
+                <img src="/image/car4.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+            <div class="box">
+                <img src="/image/car5.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+            <div class="box">
+                <img src="/image/honda-civic.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+            <div class="box">
+                <img src="/image/rols.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+            <div class="box">
+                <img src="/image/rols.jpg" alt="">
+                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="status">STATUS</h2>
+                <h2 class="price">PRICE</h2>
+                <a class="ui-button">Buy Car</a>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="about container" id="ab">
+        <div class="about-img">
+            <img src="/image/honda-civic.jpg" alt="">
+        </div>
+        <div class="about-text">
+            <span>About Us</span>
+            <h2>Cheap price with <br>Quality Cars</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, animi.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <section th:replace="fragments/common::footer">
+
+    </section>
+
+</body>
+
+</html>
