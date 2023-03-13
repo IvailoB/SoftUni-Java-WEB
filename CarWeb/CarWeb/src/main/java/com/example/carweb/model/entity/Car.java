@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -58,5 +59,5 @@ public class Car extends BaseEntity {
     private Town town;
 
     @OneToMany
-    private List<Picture> pictures;
+    private Set<Picture> pictures;
 }

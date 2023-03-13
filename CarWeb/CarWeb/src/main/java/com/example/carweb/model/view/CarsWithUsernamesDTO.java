@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,6 +17,6 @@ public class CarsWithUsernamesDTO {
     private String make;
     private String model;
     private BigDecimal price;
-    private List<Picture> pictures;
+    private Set<Picture> pictures;
     private StatusCarEnum status;
 }

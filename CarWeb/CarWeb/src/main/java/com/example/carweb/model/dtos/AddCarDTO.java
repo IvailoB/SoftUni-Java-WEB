@@ -1,5 +1,6 @@
 package com.example.carweb.model.dtos;
 
+import com.example.carweb.model.entity.Picture;
 import com.example.carweb.model.enums.CoupeEnum;
 import com.example.carweb.model.enums.EngineEnum;
 import com.example.carweb.model.enums.StatusCarEnum;
@@ -12,12 +13,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class AddCarDTO {
+
+    private Long id;
 
     @NotBlank(message = "cannot be empty")
     private String make;

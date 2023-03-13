@@ -74,7 +74,8 @@
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
+                <a th:href="@{cars/buy/{id}(id=*{id})}"
+                        class="ui-button">Buy Car</a>
             </div>
             <div class="box">
                 <img src="/image/car4.jpg" alt="">
