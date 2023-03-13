@@ -13,25 +13,9 @@ public class HomeController {
     public String index(){
         return "index";
     }
-    @GetMapping("add-car")
+    @GetMapping("cars/add")
     public String addCar(){
         return "add-car";
     }
 
-    @GetMapping("register")
-    public String register(){
-        return "register";
-    }
-    @GetMapping("login")
-    public String login(){
-        return "login";
-    }
-    @GetMapping("profile")
-    public String profile(){
-        return "profile";
-    }
-    @GetMapping("admin")
-    public String admin(){
-        return "admin";
-    }
 }

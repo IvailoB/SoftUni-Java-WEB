@@ -21,6 +21,7 @@
     font-family: Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    background-color: #e7d8d8;
   }
   
   .add-car-container {
@@ -67,7 +68,48 @@
     max-width: 155px;
     border: none;
   }
-  
+
+select{
+    border-radius: 13px;
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
+    text-align: center;
+    background: #ad9393;
+    margin-bottom: 16px;
+    margin-left: 50px;
+    color: white;
+    padding: 6px;
+    width: 430px;
+    cursor: pointer;
+}
+select:hover{
+    background: #6f5858;
+}
+
+input[type="file"]{
+    display: none;
+}
+.upload-img-label{
+    border-radius: 12px;
+    color: white;
+    height: 40px;
+    width: 200px;
+    background-color: #ad9393;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 60px;
+    cursor: pointer;
+}
+.upload-img-label:hover{
+    background-color: #6f5858;
+}
+.form-group.container-upload{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
   button {
     padding: 0.5rem;
     border-radius: 4px;

@@ -25,19 +25,19 @@ public class Car extends BaseEntity {
     private String model;
 
     @Column(nullable = false)
-    private String kilometers;
+    private String color;
 
     @Column(nullable = false)
     private BigDecimal price;
 
     @Column(nullable = false)
+    private String description;
+
+    @Column(nullable = false)
     private String year;
 
     @Column(nullable = false)
-    private String color;
-
-    @Column(nullable = false)
-    private String description;
+    private String kilometers;
 
     @Enumerated(EnumType.STRING)
     private CoupeEnum coupeEnum;

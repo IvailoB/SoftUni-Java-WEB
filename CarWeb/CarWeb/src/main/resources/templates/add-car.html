@@ -23,7 +23,7 @@
       </div>
       <div class="form-group">
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" min="1900" max="2099" required>
+        <input type="number" id="year" name="year" min="1960" max="2024" required>
       </div>
       <div class="form-group">
         <label for="color">Color:</label>
@@ -34,12 +34,41 @@
         <input type="number" id="price" name="price" min="0" required>
       </div>
       <div class="form-group">
+        <label for="kilometers">Kilometers:</label>
+        <input type="number" id="kilometers" name="kilometers" min="0" required>
+      </div>
+      <select placeholder="Transmission" class="browser-default custom-select" id="transmission" name="transmission">
+        <option value="">Select transmission</option>
+        <option th:each="t : ${T(com.example.carweb.model.enums.Transmission).values()}"
+                th:value="${t}" th:text="${t}">MANUAL</option>
+      </select>
+
+      <select placeholder="Status" class="browser-default custom-select" id="status" name="status">
+        <option value="">Select car status</option>
+        <option th:each="s : ${T(com.example.carweb.model.enums.StatusCarEnum).values()}"
+                th:value="${s}" th:text="${s}">POOR</option>
+      </select>
+
+      <select placeholder="Engine" class="browser-default custom-select" id="engine" name="engine">
+        <option value="">Select engine</option>
+        <option th:each="e : ${T(com.example.carweb.model.enums.EngineEnum).values()}"
+                th:value="${e}" th:text="${e}">GASOLINE</option>
+      </select>
+
+      <select placeholder="Coupe" class="browser-default custom-select" id="coupe" name="coupe">
+        <option value="">Select coupe</option>
+        <option th:each="c : ${T(com.example.carweb.model.enums.CoupeEnum).values()}"
+                th:value="${c}" th:text="${c}">SUV</option>
+      </select>
+
+      <div class="form-group">
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
       </div>
-      <div class="form-group">
-        <label for="image">Image:</label>
-        <input class="upload-img" type="file" id="image" name="image" accept="image/*" required>
+      <div class="form-group container-upload">
+        <label for="image">Upload pictures for your mobile</label>
+        <input class="upload-img" type="file" id="image" name="image" accept="image/*">
+        <label class="upload-img-label" for="image">Choose a Photos</label>
       </div>
       <button type="submit">Add Car</button>
     </form>

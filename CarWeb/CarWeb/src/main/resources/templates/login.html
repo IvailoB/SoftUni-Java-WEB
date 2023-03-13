@@ -13,14 +13,19 @@
 
   <div class="login-container">
     <h1>Login</h1>
-    <form>
+    <form th:object="${loginDTO}" action="/users/login" method="POST">
+
+      <div th:each="error: ${#fields.errors()}" th:text="${error}" class="text-danger">Error messages</div>
+  <div th:if="${isFound == false}" class="text-danger">Incorrect username or password!</div>
+
       <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input th:field="*{username}"
+               th:errorclass="bg-danger" type="text" id="username" name="username" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input th:errorclass="bg-danger" type="password" id="password" name="password" required>
       </div>
       <button type="submit">Login</button>
     </form>
