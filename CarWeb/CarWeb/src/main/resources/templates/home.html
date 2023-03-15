@@ -42,7 +42,7 @@
 
         <div class="cars-container container">
             <div th:each="car : ${userCars}" th:object="${car}" class="box">
-                <img src="/image/rols.jpg" alt="">
+                <img th:src="@{/download/{id}(id=${fileId})}" alt="">
                 <h2 th:text="|*{make} *{model}| "> MAke MODEL</h2>
                 <h2 th:text="*{status} ">STATUS</h2>
                 <h2 th:text="|*{price} €|">PRICE</h2>

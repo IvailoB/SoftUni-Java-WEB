@@ -12,7 +12,9 @@
 
 <div class="add-car-container">
   <h1>Add Car</h1>
-  <form th:object="${addCarDTO}" method="POST" action="/cars/add">
+  <form th:object="${addCarDTO}"
+        enctype="multipart/form-data"
+        method="POST" action="/cars/add">
     <div class="form-group">
       <label for="make">Make:</label>
       <input th:field="*{make}" th:errorclass="'is-invalid bg-danger'" type="text" id="make" name="make" required>

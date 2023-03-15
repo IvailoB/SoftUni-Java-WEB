@@ -13,7 +13,14 @@ import lombok.Setter;
 public class Picture extends BaseEntity {
 
     @Column
-    private byte[] name;
+    private String name;
+
+    @Column
+    private String contentType;
+
+    @Lob
+    @Column(length = Integer.MAX_VALUE)
+    private byte[] data;
 
     @ManyToOne
     private Car car;

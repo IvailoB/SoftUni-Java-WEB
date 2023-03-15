@@ -9,6 +9,7 @@ import com.example.carweb.repo.CarRepository;
 import com.example.carweb.util.LoggedUser;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class CarService {
                 .collect(Collectors.toSet());
     }
 
-    public void addCar(AddCarDTO addCarDTO) {
+    public void addCar(AddCarDTO addCarDTO) throws IOException {
         Car car = new Car();
 
         car.setMake(addCarDTO.getMake());
@@ -70,13 +71,15 @@ public class CarService {
 
         car.setSeller(userService.findUserById(addCarDTO.getId()));
         car.setTown(townService.findTownByPostcode(addCarDTO.getTownName(), addCarDTO.getPostcode()));
+        car.setPictures(pictureService.findPictures(car.getId(),addCarDTO.getPicture()));
 
+
+        carRepository.save(car);
 //        pictureService.savePicture(addCarDTO.getPicture());
-//
+
 //        Set<Picture> carPictures = pictureService.findAllByCarId(car.getId());
 //        car.setPictures(carPictures);
 
-        carRepository.save(car);
     }
 
     public void buyCarById(Long id) {

@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -62,6 +63,5 @@ public class AddCarDTO {
     @Positive(message = "Enter valid postcode")
     private Integer postcode;
 
-    @NotBlank(message = "You must select pictures")
-    private String picture;
+    private MultipartFile picture;
 }

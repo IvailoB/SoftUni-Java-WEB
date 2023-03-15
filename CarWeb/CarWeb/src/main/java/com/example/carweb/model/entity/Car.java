@@ -19,6 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "cars")
 public class Car extends BaseEntity {
+
     @Column(nullable = false)
     private String make;
 

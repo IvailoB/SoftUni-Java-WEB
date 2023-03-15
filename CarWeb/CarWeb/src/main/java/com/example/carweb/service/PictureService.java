@@ -3,10 +3,8 @@ package com.example.carweb.service;
 import com.example.carweb.model.entity.Picture;
 import com.example.carweb.repo.PictureRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Set;
 
@@ -19,36 +17,25 @@ public class PictureService {
 
     }
 
-    public void savePicture(Long carId, String picture) {
+    public Picture savePicture(MultipartFile file) throws IOException {
 
-        // Read image file into byte array
-        File imageFile = new File(picture);
-        byte[] imageData = new byte[(int) imageFile.length()];
-        try (FileInputStream fis = new FileInputStream(imageFile);
-             ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            int bytesRead;
-            while ((bytesRead = fis.read(imageData)) != -1) {
-                baos.write(imageData, 0, bytesRead);
-            }
-            imageData = baos.toByteArray();
+        Picture picture = new Picture();
+        picture.setName(file.getOriginalFilename());
+        picture.setContentType(file.getContentType());
+        picture.setData(file.getBytes());
+    return pictureRepository.save(picture);
 
-            Picture iamge = new Picture();
-//            iamge.setCar(carAndPictureService.findCarById(carId));
-            iamge.setName(imageData);
+    }
 
-            pictureRepository.save(iamge);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Set<Picture> findPictures(Long carId, MultipartFile picture) throws IOException {
+        Set<Picture> carPictures = pictureRepository.findAllByCarId(carId).orElse(null);
+
+        if (carPictures.size() == 0){
+            Picture images = savePicture(picture);
+            carPictures.add(images);
         }
 
-    }
+        return carPictures;
 
-    public Set<Picture> findAllByCarId(Long id) {
-        return pictureRepository.findAllByCarId(id);
-    }
-
-    public Set<Picture> findAllPicturesByCarId(Long carId, String picture) {
-        savePicture(carId,picture);
-        return pictureRepository.findAllByCarId(carId);
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+
 @Controller
 @RequestMapping("/cars")
 public class CarController {
@@ -32,7 +34,7 @@ public class CarController {
     @PostMapping("/add")
     public String addConfirm(@Valid AddCarDTO addCarDTO,
                              BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
 
             redirectAttributes.addFlashAttribute("addCarDTO", addCarDTO);
