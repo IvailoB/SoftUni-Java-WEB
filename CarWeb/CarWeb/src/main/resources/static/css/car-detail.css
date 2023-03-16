@@ -1,0 +1,63 @@
+/* Styles for the entire page */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for the heading */
+
+h1 {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Styles for the car image */
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+/* Styles for the car information section */
+
+h2 {
+    color: #007bff;
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+strong {
+    display: inline-block;
+    width: 100px;
+}
+
+/* Styles for the car features section */
+
+ul:last-of-type {
+    margin-bottom: 20px;
+}
+
+/* Styles for the car description section */
+
+p {
+    line-height: 1.5;
+    margin-top: 20px;
+    padding: 0 20px;
+}

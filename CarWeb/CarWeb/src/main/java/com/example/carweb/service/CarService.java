@@ -3,8 +3,7 @@ package com.example.carweb.service;
 import com.example.carweb.model.dtos.AddCarDTO;
 import com.example.carweb.model.entity.Car;
 import com.example.carweb.model.entity.Picture;
-import com.example.carweb.model.entity.Town;
-import com.example.carweb.model.view.CarsWithUsernamesDTO;
+import com.example.carweb.model.view.CarsViewDTO;
 import com.example.carweb.repo.CarRepository;
 import com.example.carweb.util.LoggedUser;
 import org.springframework.stereotype.Service;
@@ -30,28 +29,30 @@ public class CarService {
         this.loggedUser = loggedUser;
     }
 
-    public Set<Car> getCarFromCurrentUser(Long id) {
-        return carRepository.findAllBySeller_id(id);
+    public Set<CarsViewDTO> getCarFromCurrentUser(Long id) {
+        Set<Car> loggedUserCars = carRepository.findAllBySeller_id(id);
+
+        return loggedUserCars
+                .stream().map(c -> new CarsViewDTO(c.getId(),
+                        c.getMake(), c.getModel(), c.getPrice(),
+                        findFirstPictureUrl(c.getPictures()), c.getStatus()))
+                .collect(Collectors.toSet());
     }
 
-    public Set<CarsWithUsernamesDTO> getCarsFromOtherUsers(Long id) {
+    public Set<CarsViewDTO> getCarsFromOtherUsers(Long id) {
 
         Set<Car> carsBySellerIdNot = carRepository.findCarsBySellerIdNot(id);
 
-        return carsBySellerIdNot.stream()
-                .map(car -> {
-                    CarsWithUsernamesDTO carsWithUsernamesDTO = new CarsWithUsernamesDTO();
-
-                    carsWithUsernamesDTO.setId(car.getId());
-                    carsWithUsernamesDTO.setMake(car.getMake());
-                    carsWithUsernamesDTO.setModel(car.getModel());
-                    carsWithUsernamesDTO.setStatus(car.getStatus());
-                    carsWithUsernamesDTO.setPrice(car.getPrice());
-                    carsWithUsernamesDTO.setPictures(car.getPictures());
-
-                    return carsWithUsernamesDTO;
-                })
+       return getAllCars()
+                .stream().map(c -> new CarsViewDTO(c.getId(),
+                        c.getMake(), c.getModel(), c.getPrice(),
+                        findFirstPictureUrl(c.getPictures()), c.getStatus()))
                 .collect(Collectors.toSet());
+    }
+
+
+    public String findFirstPictureUrl(Set<Picture> pictures) {
+        return pictures.stream().findFirst().map(p -> p.getName()).orElse("N/A");
     }
 
     public void addCar(AddCarDTO addCarDTO) throws IOException {
@@ -71,7 +72,7 @@ public class CarService {
 
         car.setSeller(userService.findUserById(addCarDTO.getId()));
         car.setTown(townService.findTownByPostcode(addCarDTO.getTownName(), addCarDTO.getPostcode()));
-        car.setPictures(pictureService.findPictures(car.getId(),addCarDTO.getPicture()));
+        car.setPictures(pictureService.findPictures(car.getId(), addCarDTO.getPicture()));
 
 
         carRepository.save(car);
@@ -80,6 +81,10 @@ public class CarService {
 //        Set<Picture> carPictures = pictureService.findAllByCarId(car.getId());
 //        car.setPictures(carPictures);
 
+    }
+
+    public List<Car> getAllCars() {
+        return carRepository.findAll();
     }
 
     public void buyCarById(Long id) {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/car-detail.css">
+    <link rel="stylesheet" href="/css/index.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Car Details</title>
+</head>
+<body>
+
+<header th:replace="~{/fragments/common::navigation}">
+
+</header>
+
+<h1>Car Details</h1>
+
+<div th:object="${car}" class="wrapper">
+
+    <img th:each="picture : *{pictures}" th:src="${picture}" alt="Car Image">
+
+    <h2>Car Information</h2>
+    <ul>
+        <li th:text="*{make}"><strong>Make:</strong></li>
+        <li th:text="*{model}"><strong>Model:</strong></li>
+        <li th:text="*{year}"><strong>Year:</strong></li>
+        <li th:text="*{color}"><strong>Color:</strong></li>
+        <li th:text="*{price}"><strong>Price:</strong> </li>
+    </ul>
+
+    <h2>Features</h2>
+    <ul>
+        <li th:text="*{transmission}"></li>
+        <li th:text="*{status}"></li>
+        <li th:text="*{coupeEnum}"></li>
+        <li th:text="*{engineEnum}"></li>
+        <li th:text="*{kilometers}"></li>
+        <li th:text="*{townName}"></li>
+        <li th:text="*{sellerName}"></li>
+    </ul>
+
+    <h2>Description</h2>
+    <p th:text="*{description}"></p>
+
+</div>
+
+<section th:replace="~{/fragments/common::footer}">
+</section>
+
+</body>
+</html>

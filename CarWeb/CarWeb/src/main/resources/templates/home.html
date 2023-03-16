@@ -35,18 +35,18 @@
         </div>
     </section>
 
-    <section class="cars" id="my-cars">
+    <section th:each="car : ${userCars}" th:object="${car}" class="cars" id="my-cars">
         <div class="heading">
             <span th:text="|My Cars: ${currentUserInfo.username}|"></span>
             </div>
 
         <div class="cars-container container">
-            <div th:each="car : ${userCars}" th:object="${car}" class="box">
-                <img th:src="@{/download/{id}(id=${fileId})}" alt="">
-                <h2 th:text="|*{make} *{model}| "> MAke MODEL</h2>
-                <h2 th:text="*{status} ">STATUS</h2>
-                <h2 th:text="|*{price} €|">PRICE</h2>
-                <a class="btn-danger btn"
+            <div  th:href="@{cars/car-detail{id}(id=*{id})}" class="box">
+                <img th:src="*{thumbnailUrl}" alt="">
+                <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
+                <h2 th:text="*{status} " class="status">STATUS</h2>
+                <h2 th:text="|*{price} €|" class="price">PRICE</h2>
+                <a class="ui-button"
                    th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</a>
             </div>
             <div class="box">

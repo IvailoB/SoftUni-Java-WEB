@@ -24,12 +24,10 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
-    private final LoggedUser loggedUser;
 
 
-    public UserController(UserService userService, LoggedUser loggedUser) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.loggedUser = loggedUser;
     }
 
     @GetMapping("/register")
@@ -83,37 +81,6 @@ public class UserController {
         return "login";
     }
 
-    //    @PostMapping("/login")
-//    public String loginConfirm(@Valid LoginDTO loginDTO, BindingResult result, RedirectAttributes redirectAttributes) {
-//        if (result.hasErrors()) {
-//            redirectAttributes
-//                    .addFlashAttribute("loginDTO", loginDTO)
-//                    .addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", result);
-//
-//            return "redirect:/users/login";
-//        }
-//
-//
-//        User user = userService
-//                .findByUserNameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
-//        if (user == null) {
-//            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
-//            redirectAttributes.addFlashAttribute("isFound", false);
-//            return "redirect:login";
-//        }
-//
-//        this.userService.login(loginDTO.getUsername());
-//        return "redirect:/";
-//    }
-//    @GetMapping("/logout")
-//    public String logout() {
-//        if (!this.loggedUser.isLogged()) {
-//            return "redirect:/users/login";
-//        }
-//
-//        this.userService.logout();
-//        return "redirect:/";
-//    }
 
     @GetMapping("/profile")
     public String profile(Principal principal, Model model) {
