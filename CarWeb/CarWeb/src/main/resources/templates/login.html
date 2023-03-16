@@ -8,30 +8,26 @@
 </head>
 <body>
 
-  <header th:replace="/fragments/common::navigation">
+  <header th:replace="~{/fragments/common::navigation}">
 </header>
 
   <div class="login-container">
     <h1>Login</h1>
-    <form th:object="${loginDTO}" action="/users/login" method="POST">
-
-      <div th:each="error: ${#fields.errors()}" th:text="${error}" class="text-danger">Error messages</div>
-  <div th:if="${isFound == false}" class="text-danger">Incorrect username or password!</div>
+    <form th:action="@{/users/login}" method="POST">
 
       <div class="form-group">
-        <label for="username">Username:</label>
-        <input th:field="*{username}"
-               th:errorclass="bg-danger" type="text" id="username" name="username" required>
+        <label for="username">Email:</label>
+        <input type="text" id="username" name="username" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input th:errorclass="bg-danger" type="password" id="password" name="password" required>
+        <input  type="password" id="password" name="password" required>
       </div>
       <button type="submit">Login</button>
     </form>
   </div>
 
-  <section th:replace="/fragments/common::footer">
+  <section th:replace="~{/fragments/common::footer}">
 </section>
 
 <!-- Link to JS -->

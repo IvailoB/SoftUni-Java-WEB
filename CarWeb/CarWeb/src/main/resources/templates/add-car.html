@@ -7,7 +7,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-<header th:replace="/fragments/common::navigation">
+<header th:replace="~{/fragments/common::navigation}">
 </header>
 
 <div class="add-car-container">
@@ -105,7 +105,7 @@
     <button type="submit" value="Register">Add Car</button>
   </form>
 </div>
-<section th:replace="/fragments/common::footer">
+<section th:replace="~{/fragments/common::footer}">
 </section>
 </body>
 </html>

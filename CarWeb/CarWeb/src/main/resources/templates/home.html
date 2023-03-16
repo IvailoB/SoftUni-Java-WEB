@@ -16,13 +16,13 @@
 
 <body>
 
-    <header th:replace="fragments/common::navigation">
+    <header th:replace="~{/fragments/common::navigation}">
 
     </header>
 
     <section class="home" id="home">
         <div class="bg-img">
-            <img src="/image/homeimg.jpg">
+            <img src="/images/homeimg.jpg">
         </div>
         <div class="home-text">
             <h1>We Have Everything <br>Your <span>Car</span> Need</h1>
@@ -50,7 +50,7 @@
                    th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</a>
             </div>
             <div class="box">
-                <img src="/image/rols.jpg" alt="">
+                <img src="/images/rols.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
@@ -70,7 +70,7 @@
 
         <div class="cars-container container">
             <div class="box">
-                <img src="/image/car3.jpg" alt="">
+                <img src="/images/car3.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
@@ -78,35 +78,35 @@
                         class="ui-button">Buy Car</a>
             </div>
             <div class="box">
-                <img src="/image/car4.jpg" alt="">
+                <img src="/images/car4.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
                 <a class="ui-button">Buy Car</a>
             </div>
             <div class="box">
-                <img src="/image/car5.jpg" alt="">
+                <img src="/images/car5.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
                 <a class="ui-button">Buy Car</a>
             </div>
             <div class="box">
-                <img src="/image/honda-civic.jpg" alt="">
+                <img src="/images/honda-civic.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
                 <a class="ui-button">Buy Car</a>
             </div>
             <div class="box">
-                <img src="/image/rols.jpg" alt="">
+                <img src="/images/rols.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
                 <a class="ui-button">Buy Car</a>
             </div>
             <div class="box">
-                <img src="/image/rols.jpg" alt="">
+                <img src="/images/rols.jpg" alt="">
                 <<h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
@@ -118,7 +118,7 @@
 
     <section class="about container" id="ab">
         <div class="about-img">
-            <img src="/image/honda-civic.jpg" alt="">
+            <img src="/images/honda-civic.jpg" alt="">
         </div>
         <div class="about-text">
             <span>About Us</span>
@@ -128,7 +128,7 @@
         </div>
     </section>
 
-    <section th:replace="fragments/common::footer">
+    <section th:replace="~{/fragments/common::footer}">
 
     </section>
 

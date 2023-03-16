@@ -3,6 +3,7 @@ package com.example.carweb.controller;
 import com.example.carweb.model.dtos.LoginDTO;
 import com.example.carweb.model.dtos.RegisterDTO;
 import com.example.carweb.model.entity.User;
+import com.example.carweb.model.view.UserProfileView;
 import com.example.carweb.service.UserService;
 import com.example.carweb.util.LoggedUser;
 import jakarta.validation.Valid;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -31,10 +34,6 @@ public class UserController {
 
     @GetMapping("/register")
     public String register() {
-        if (this.loggedUser.isLogged()) {
-            return "redirect:/home";
-        }
-
         return "register";
     }
 
@@ -61,52 +60,77 @@ public class UserController {
     }
 
 
+//    @GetMapping("/profile")
+//    public String profile(Principal principal, Model model) {
+//        String username = principal.getName();
+//        User user = userService.getUserByUsername(username);
+
+//        UserProfileView userProfileView = new UserProfileView(
+//                username,
+//                user.getEmail(),
+//                user.getFullName(),
+//                user.getAge(),
+//                user.getLevel() != null ? user.getLevel().name() : "BEGINNER"
+//        );
+//
+//        model.addAttribute("user", userProfileView);
+
+//        return "profile";
+//    }
+
     @GetMapping("/login")
-    public String login(Model model) {
-        if (!model.containsAttribute("isFound")) {
-            model.addAttribute("isFound", true);
-        }
+    public String login() {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String loginConfirm(@Valid LoginDTO loginDTO, BindingResult result, RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) {
-            redirectAttributes
-                    .addFlashAttribute("loginDTO", loginDTO)
-                    .addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", result);
+    //    @PostMapping("/login")
+//    public String loginConfirm(@Valid LoginDTO loginDTO, BindingResult result, RedirectAttributes redirectAttributes) {
+//        if (result.hasErrors()) {
+//            redirectAttributes
+//                    .addFlashAttribute("loginDTO", loginDTO)
+//                    .addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", result);
+//
+//            return "redirect:/users/login";
+//        }
+//
+//
+//        User user = userService
+//                .findByUserNameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
+//        if (user == null) {
+//            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+//            redirectAttributes.addFlashAttribute("isFound", false);
+//            return "redirect:login";
+//        }
+//
+//        this.userService.login(loginDTO.getUsername());
+//        return "redirect:/";
+//    }
+//    @GetMapping("/logout")
+//    public String logout() {
+//        if (!this.loggedUser.isLogged()) {
+//            return "redirect:/users/login";
+//        }
+//
+//        this.userService.logout();
+//        return "redirect:/";
+//    }
 
-            return "redirect:/users/login";
-        }
-
-
-        User user = userService
-                .findByUserNameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
-        if (user == null) {
-            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
-            redirectAttributes.addFlashAttribute("isFound", false);
-            return "redirect:login";
-        }
-
-        this.userService.login(loginDTO.getUsername());
-        return "redirect:/";
-    }
-    @GetMapping("/logout")
-    public String logout() {
-        if (!this.loggedUser.isLogged()) {
-            return "redirect:/users/login";
-        }
-
-        this.userService.logout();
-        return "redirect:/";
-    }
     @GetMapping("/profile")
-    public String profile(){
+    public String profile(Principal principal, Model model) {
+        User user = userService.getUserByUsername(principal.getName());
+        UserProfileView profileView = new UserProfileView();
+
+        profileView.setUsername(user.getUsername());
+        profileView.setEmail(user.getEmail());
+        profileView.setFirstName(user.getFirstName());
+        profileView.setLastName(user.getLastName());
+
+        model.addAttribute("user", profileView);
         return "profile";
     }
 
     @GetMapping("/admin")
-    public String admin(){
+    public String admin() {
         return "admin";
     }
 

@@ -9,19 +9,20 @@
 <body>
 
 
-<header th:replace="/fragments/common::navigation">
+<header th:replace="~{/fragments/common::navigation}">
 </header>
 
 <div class="register-container">
     <h1>User Registration</h1>
-    <form th:object="${registerDTO}" action="/users/register" method="POST">
+    <form th:object="${registerDTO}" th:action="@{/users/register}" th:method="POST">
         <div class="form-group">
             <label for="username">Username</label>
 
                 <input th:field="*{username}" th:errorclass="'is-invalid alert-danger'"
                        type="text"  id="username" name="username"
                        aria-describedby="usernameHelpInline" placeholder="Username">
-                <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" id="usernameHelpInline" class="invalid-feedback bg-danger text-light rounded">
+                <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                       id="usernameHelpInline" class="invalid-feedback bg-danger text-light rounded">
                     Username length must be between 5 and 20 characters.
                 </small>
 
@@ -94,7 +95,7 @@
 </div>
 
 
-<section th:replace="/fragments/common::footer">
+<section th:replace="~{/fragments/common::footer}">
 </section>
 
 </body>

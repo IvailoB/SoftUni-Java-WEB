@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.Set;
 
 @Controller
@@ -30,23 +31,15 @@ public class HomeController {
 
     @GetMapping()
     public String index() {
-        if (loggedUser.isLogged()) {
-            return "redirect:/home";
-        }
-
-        return "index";
+            return "index";
     }
 
     @GetMapping("/home")
-    String home(Model model) {
-        if (!loggedUser.isLogged()) {
-            return "redirect:/";
-        }
+    String home(Principal principal, Model model) {
 
-        User user = userService.findUserById(loggedUser.getId());
+        User user = userService.getUserByUsername(principal.getName());
 
         model.addAttribute("currentUserInfo", user);
-
 
 
         Set<Car> carsFromLoggedUser = this.carService.getCarFromCurrentUser(this.loggedUser.getId());

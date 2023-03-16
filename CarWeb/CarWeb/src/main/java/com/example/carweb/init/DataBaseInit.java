@@ -19,6 +19,6 @@ public class DataBaseInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         roleService.init();
-        userService.init();
+//        userService.init();
     }
 }

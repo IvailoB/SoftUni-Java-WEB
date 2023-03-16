@@ -179,7 +179,20 @@ header.shadow #search-icon {
     text-transform: uppercase;
     font-weight: 500;
 }
+.navbar button{
+    color: var(--text-color);
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    width: 100%;
+    border: none;
+    background: none;
+}
 
+.navbar button:hover {
+    color: var(--main-color);
+    border-bottom: 3px solid var(--main-color);
+}
 .navbar a:hover,
 .navbar .active {
     color: var(--main-color);

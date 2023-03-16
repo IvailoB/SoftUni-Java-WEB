@@ -1,0 +1,7 @@
+<li><a href="/home" class="active">Home</a></li>
+<li sec:authorize="hasRole('ADMIN')"><a href="/users/admin">Admin panel</a></li>
+<li><a href="/cars/add">Add Car</a></li>
+<li><a href="/users/profile">Profile</a></li>
+<form th:action="@{/users/logout}" method="POST">
+  <button type="submit">Log out</button>
+</form>
