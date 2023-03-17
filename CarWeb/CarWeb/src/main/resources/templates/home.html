@@ -41,22 +41,23 @@
             </div>
 
         <div th:each="car : ${userCars}" th:object="${car}" class="cars-container container">
-            <div  th:href="@{cars/car-detail{id}(id=*{id})}" class="box">
+            <a  th:href="@{cars/details/{id}(id=*{id})}" class="box">
                 <img th:src="*{thumbnailUrl}" alt="">
                 <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
                 <h2 th:text="*{status} " class="status">STATUS</h2>
                 <h2 th:text="|*{price} €|" class="price">PRICE</h2>
-                <a class="ui-button"
-                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</a>
-            </div>
-            <div class="box">
+                <h2 class="ui-button"
+                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
+            </a>
+        </div>
+
+            <a class="box">
                 <img src="/images/rols.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
-            </div>
-        </div>
+                <h2 class="ui-button">Buy Car</h2>
+            </a>
 
     </section>
 
@@ -69,49 +70,49 @@
         </div>
 
         <div class="cars-container container">
-            <div class="box">
+            <a class="box">
                 <img src="/images/car3.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a th:href="@{cars/buy/{id}(id=*{id})}"
-                        class="ui-button">Buy Car</a>
-            </div>
-            <div class="box">
+                <h2 th:href="@{cars/buy/{id}(id=*{id})}"
+                        class="ui-button">Buy Car</h2>
+            </a>
+            <a class="box">
                 <img src="/images/car4.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
-            </div>
-            <div class="box">
+                <h2 class="ui-button">Buy Car</h2>
+            </a>
+            <a class="box">
                 <img src="/images/car5.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
-            </div>
-            <div class="box">
+                <h2 class="ui-button">Buy Car</h2>
+            </a>
+            <a class="box">
                 <img src="/images/honda-civic.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
-            </div>
-            <div class="box">
+                <h2 class="ui-button">Buy Car</h2>
+            </a>
+            <a class="box">
                 <img src="/images/rols.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
-            </div>
-            <div class="box">
+                <h2 class="ui-button">Buy Car</h2>
+            </a>
+            <a class="box">
                 <img src="/images/rols.jpg" alt="">
-                <<h2 class="make"> MAke MODEL</h2>
+                <h2 class="make"> MAke MODEL</h2>
                 <h2 class="status">STATUS</h2>
                 <h2 class="price">PRICE</h2>
-                <a class="ui-button">Buy Car</a>
-            </div>
+                <h2 class="ui-button">Buy Car</h2>
+            </a>
         </div>
 
     </section>

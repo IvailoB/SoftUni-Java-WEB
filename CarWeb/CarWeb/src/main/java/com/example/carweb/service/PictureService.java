@@ -19,19 +19,26 @@ public class PictureService {
 
     }
 
-    public Picture savePicture(MultipartFile file) throws IOException {
 
-        Picture picture = new Picture();
-        picture.setName(file.getOriginalFilename());
-        picture.setContentType(file.getContentType());
-        picture.setData(file.getBytes());
-    return pictureRepository.save(picture);
-
+    public void createPicture(Picture picture) {
+        pictureRepository.save(picture);
     }
 
-    public Car findPictures(Car car, MultipartFile picture) throws IOException {
-        Picture images = savePicture(picture);
-        car.setPictures(Collections.singleton(images));
-        return car;
-    }
+//    public Picture savePicture(MultipartFile file) throws IOException {
+//
+//        Picture picture = new Picture();
+//        picture.setName(file.getOriginalFilename());
+//        picture.setContentType(file.getContentType());
+//        picture.setData(file.getBytes());
+//
+//        return picture;
+//    }
+
+//    public Car findPictures(Car car, MultipartFile picture) throws IOException {
+//        Picture images = savePicture(picture);
+//        images.setCar(car);
+//        pictureRepository.save(images);
+//        car.setPictures(Collections.singleton(images));
+//        return car;
+//    }
 }

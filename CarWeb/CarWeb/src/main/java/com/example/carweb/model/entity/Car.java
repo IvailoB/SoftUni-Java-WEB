@@ -59,6 +59,6 @@ public class Car extends BaseEntity {
     @ManyToOne
     private Town town;
 
-    @OneToMany (mappedBy = "car", fetch = FetchType.EAGER)
+    @OneToMany (mappedBy = "car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Picture> pictures;
 }

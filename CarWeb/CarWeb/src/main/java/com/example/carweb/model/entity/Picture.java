@@ -12,15 +12,13 @@ import lombok.Setter;
 @Table(name = "pictures")
 public class Picture extends BaseEntity {
 
-    @Column
-    private String name;
+    private String title;
 
-    @Column
-    private String contentType;
+    @Column(nullable = false)
+    private String url;
 
-    @Lob
-    @Column(length = Integer.MAX_VALUE)
-    private byte[] data;
+    @ManyToOne
+    private User author;
 
     @ManyToOne
     private Car car;

@@ -4,22 +4,18 @@ import com.example.carweb.model.dtos.AddCarDTO;
 import com.example.carweb.model.entity.Car;
 import com.example.carweb.model.entity.Picture;
 import com.example.carweb.model.view.CarDetailView;
-import com.example.carweb.model.view.CarsViewDTO;
 import com.example.carweb.service.CarService;
+import com.example.carweb.service.TownService;
 import com.example.carweb.service.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/cars")
@@ -27,12 +23,14 @@ public class CarController {
 
     private final CarService carService;
     private final UserService userService;
+    private final TownService townService;
 
     private final ModelMapper modelMapper;
 
-    public CarController(CarService carService, UserService userService, ModelMapper modelMapper) {
+    public CarController(CarService carService, UserService userService, TownService townService, ModelMapper modelMapper) {
         this.carService = carService;
         this.userService = userService;
+        this.townService = townService;
         this.modelMapper = modelMapper;
     }
 
@@ -53,7 +51,7 @@ public class CarController {
                 car.getStatus(), car.getTransmission(), car.getSeller().getUsername(),
                 car.getTown().getName(),
                 car.getPictures().stream()
-                        .map(Picture::getName).collect(Collectors.toSet())
+                        .map(Picture::getUrl).collect(Collectors.toSet())
         );
 
         model.addAttribute("car", carDetailView);
@@ -63,22 +61,40 @@ public class CarController {
 
     @PostMapping("/add")
     public String addConfirm(@Valid AddCarDTO addCarDTO,
-                             BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes,
                              Principal principal) throws IOException {
-        if (bindingResult.hasErrors()) {
 
-            redirectAttributes.addFlashAttribute("addCarDTO", addCarDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addCarDTO", bindingResult);
+        Car car = new Car();
+        car.setMake(addCarDTO.getMake());
+        car.setModel(addCarDTO.getModel());
+        car.setPrice(addCarDTO.getPrice());
+        car.setStatus(addCarDTO.getStatus());
+        car.setTransmission(addCarDTO.getTransmission());
+        car.setCoupeEnum(addCarDTO.getCoupe());
+        car.setEngineEnum(addCarDTO.getEngine());
+        car.setColor(addCarDTO.getColor());
+        car.setDescription(addCarDTO.getDescription());
+        car.setKilometers(addCarDTO.getKilometers());
+        car.setYear(addCarDTO.getYear());
 
-            return "redirect:add";
-        }
+        car.setSeller(userService.getUserByUsername(principal.getName()));
+        car.setTown(townService.findTownByPostcode(addCarDTO.getTownName(), addCarDTO.getPostcode()));
 
-        addCarDTO.setId(userService.getUserByUsername(principal.getName()).getId());
-
-        Car car = carService.addCar(addCarDTO);
+        carService.createCar(car, addCarDTO.getPicture());
 
         return "redirect:/cars/details/" + car.getId();
+
+//        if (bindingResult.hasErrors()) {
+//
+//            redirectAttributes.addFlashAttribute("addCarDTO", addCarDTO);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addCarDTO", bindingResult);
+//
+//            return "redirect:add";
+//        }
+//
+//        addCarDTO.setId(userService.getUserByUsername(principal.getName()).getId());
+//
+//        Car car = carService.addCar(addCarDTO);
+
 
     }
 

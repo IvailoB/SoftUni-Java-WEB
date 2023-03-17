@@ -1,6 +1,5 @@
 package com.example.carweb.service;
 
-import com.example.carweb.model.dtos.AddCarDTO;
 import com.example.carweb.model.entity.Car;
 import com.example.carweb.model.entity.Picture;
 import com.example.carweb.model.view.CarsViewDTO;
@@ -9,7 +8,7 @@ import com.example.carweb.util.LoggedUser;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,13 +16,15 @@ import java.util.stream.Collectors;
 @Service
 public class CarService {
     private final CarRepository carRepository;
+    private final ImageCloudService imageCloudService;
     private final PictureService pictureService;
     private final UserService userService;
     private final TownService townService;
     private final LoggedUser loggedUser;
 
-    public CarService(CarRepository carRepository, PictureService pictureService, UserService userService, TownService townService, LoggedUser loggedUser) {
+    public CarService(CarRepository carRepository, ImageCloudService imageCloudService, PictureService pictureService, UserService userService, TownService townService, LoggedUser loggedUser) {
         this.carRepository = carRepository;
+        this.imageCloudService = imageCloudService;
         this.pictureService = pictureService;
         this.userService = userService;
         this.townService = townService;
@@ -53,37 +54,53 @@ public class CarService {
 
 
     public String findFirstPictureUrl(Set<Picture> pictures) {
-        return pictures.stream().findFirst().map(p -> p.getName()).orElse("N/A");
+
+        return pictures.stream().findFirst().map(Picture::getUrl).orElse("N/A");
     }
 
-    public Car addCar(AddCarDTO addCarDTO) throws IOException {
-        Car car = new Car();
-
-        car.setMake(addCarDTO.getMake());
-        car.setModel(addCarDTO.getModel());
-        car.setPrice(addCarDTO.getPrice());
-        car.setStatus(addCarDTO.getStatus());
-        car.setTransmission(addCarDTO.getTransmission());
-        car.setCoupeEnum(addCarDTO.getCoupe());
-        car.setEngineEnum(addCarDTO.getEngine());
-        car.setColor(addCarDTO.getColor());
-        car.setDescription(addCarDTO.getDescription());
-        car.setKilometers(addCarDTO.getKilometers());
-        car.setYear(addCarDTO.getYear());
-
-        car.setSeller(userService.findUserById(addCarDTO.getId()));
-        car.setTown(townService.findTownByPostcode(addCarDTO.getTownName(), addCarDTO.getPostcode()));
-
-        pictureService.findPictures(car,addCarDTO.getPicture());
-
-        return carRepository.save(car);
+//    public Car addCar(AddCarDTO addCarDTO) throws IOException {
+//        Car car = new Car();
+//
+//        car.setMake(addCarDTO.getMake());
+//        car.setModel(addCarDTO.getModel());
+//        car.setPrice(addCarDTO.getPrice());
+//        car.setStatus(addCarDTO.getStatus());
+//        car.setTransmission(addCarDTO.getTransmission());
+//        car.setCoupeEnum(addCarDTO.getCoupe());
+//        car.setEngineEnum(addCarDTO.getEngine());
+//        car.setColor(addCarDTO.getColor());
+//        car.setDescription(addCarDTO.getDescription());
+//        car.setKilometers(addCarDTO.getKilometers());
+//        car.setYear(addCarDTO.getYear());
+//
+//        car.setSeller(userService.findUserById(addCarDTO.getId()));
+//        car.setTown(townService.findTownByPostcode(addCarDTO.getTownName(), addCarDTO.getPostcode()));
+//
+//        pictureService.findPictures(car,addCarDTO.getPicture());
+//
+//        return carRepository.save(car);
 //        pictureService.savePicture(addCarDTO.getPicture());
 
 //        Set<Picture> carPictures = pictureService.findAllByCarId(car.getId());
 //        car.setPictures(carPictures);
 
-    }
+//    }
 
+    public Car createCar(Car car, MultipartFile imageFile) {
+        String pictureUrl = imageCloudService.saveImage(imageFile);
+
+        Picture picture = new Picture();
+        picture.setCar(car);
+        picture.setAuthor(car.getSeller());
+        picture.setTitle(imageFile.getOriginalFilename());
+        picture.setUrl(pictureUrl);
+
+        car.setPictures(Collections.singleton(picture));
+
+        carRepository.save(car);
+
+        return car;
+    }
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }

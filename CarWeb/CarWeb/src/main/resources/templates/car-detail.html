@@ -23,28 +23,39 @@
 <h1>Car Details</h1>
 
 <div th:object="${car}" class="wrapper">
-
-    <img th:each="picture : *{pictures}" th:src="${picture}" alt="Car Image">
-
-    <h2>Car Information</h2>
-    <ul>
-        <li th:text="*{make}"><strong>Make:</strong></li>
-        <li th:text="*{model}"><strong>Model:</strong></li>
-        <li th:text="*{year}"><strong>Year:</strong></li>
-        <li th:text="*{color}"><strong>Color:</strong></li>
-        <li th:text="*{price}"><strong>Price:</strong> </li>
+    <ul class="image-list">
+        <li>
+            <img
+                 th:each="picture : *{pictures}" th:src="${picture}" alt="Car Image">
+        </li>
     </ul>
 
-    <h2>Features</h2>
-    <ul>
-        <li th:text="*{transmission}"></li>
-        <li th:text="*{status}"></li>
-        <li th:text="*{coupeEnum}"></li>
-        <li th:text="*{engineEnum}"></li>
-        <li th:text="*{kilometers}"></li>
-        <li th:text="*{townName}"></li>
-        <li th:text="*{sellerName}"></li>
-    </ul>
+    <div class="car-info">
+        <div class="car-info-details">
+            <h2>Car Information</h2>
+
+            <ul>
+                <li th:text="|Make: *{make}|"><strong></strong></li>
+                <li th:text="|Model: *{model}|"><strong></strong></li>
+                <li th:text="|Year: *{year}" |><strong></strong></li>
+                <li th:text="|Color: *{color}|"><strong></strong></li>
+                <li th:text="|Price: *{price}" |><strong></strong></li>
+            </ul>
+        </div>
+        <div class="car-info-details">
+
+            <h2>Features</h2>
+            <ul>
+                <li th:text="|Transmission: *{transmission}|"></li>
+                <li th:text="|Status: *{status}|"></li>
+                <li th:text="|Coupe: *{coupeEnum}|"></li>
+                <li th:text="|Engine: *{engineEnum}|"></li>
+                <li th:text="|Kilometers: *{kilometers}|"></li>
+                <li th:text="|City from: *{townName}|"></li>
+                <li th:text="|Seller: *{sellerName}|"></li>
+            </ul>
+        </div>
+    </div>
 
     <h2>Description</h2>
     <p th:text="*{description}"></p>

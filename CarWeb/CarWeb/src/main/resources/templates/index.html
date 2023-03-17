@@ -44,18 +44,16 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, consequatur.</p>
     </div>
 
-        <div  class="cars-container container">
+        <div class="cars-container container">
             <a th:each="car : ${cars}" th:object="${car}"
-                 th:href="@{/cars/details/{id}(id=*{id})}" class="box">
+               th:href="@{/cars/details/{id}(id=*{id})}" class="box">
                 <img th:src="*{thumbnailUrl}" alt="">
                 <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
                 <h2 th:text="*{status} " class="status">STATUS</h2>
                 <h2 th:text="|*{price} €|" class="price">PRICE</h2>
-                <a class="ui-button"
-                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</a>
+                <h2 class="ui-button"
+                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
             </a>
-        </div>
-
     <!--        <div class="cars-container container">-->
     <!--            <div class="box">-->
     <!--                <img src="/images/car3.jpg" alt="car image">-->
