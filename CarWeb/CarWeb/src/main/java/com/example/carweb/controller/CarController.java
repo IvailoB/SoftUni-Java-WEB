@@ -37,21 +37,20 @@ public class CarController {
     }
 
 
-
     @GetMapping("/add")
-    public String addCar(){
+    public String addCar() {
         return "add-car";
     }
 
     @GetMapping("/details/{id}")
-    public String carDetail(@PathVariable("id") Long id, Model model){
+    public String carDetail(@PathVariable("id") Long id, Model model) {
         Car car = carService.findCarById(id);
 
         CarDetailView carDetailView = new CarDetailView(car.getId(),
-                car.getMake(),car.getModel(),car.getColor(),
-                car.getPrice(),car.getDescription(),car.getYear(),
-                car.getKilometers(),car.getCoupeEnum(),car.getEngineEnum(),
-                car.getStatus(),car.getTransmission(), car.getSeller().getUsername(),
+                car.getMake(), car.getModel(), car.getColor(),
+                car.getPrice(), car.getDescription(), car.getYear(),
+                car.getKilometers(), car.getCoupeEnum(), car.getEngineEnum(),
+                car.getStatus(), car.getTransmission(), car.getSeller().getUsername(),
                 car.getTown().getName(),
                 car.getPictures().stream()
                         .map(Picture::getName).collect(Collectors.toSet())
@@ -61,6 +60,7 @@ public class CarController {
 
         return "car-detail";
     }
+
     @PostMapping("/add")
     public String addConfirm(@Valid AddCarDTO addCarDTO,
                              BindingResult bindingResult,
@@ -76,9 +76,10 @@ public class CarController {
 
         addCarDTO.setId(userService.getUserByUsername(principal.getName()).getId());
 
-        carService.addCar(addCarDTO);
+        Car car = carService.addCar(addCarDTO);
 
-        return "redirect:/home";
+        return "redirect:/cars/details/" + car.getId();
+
     }
 
     @GetMapping("/buy/{id}")

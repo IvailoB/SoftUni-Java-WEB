@@ -35,12 +35,12 @@
         </div>
     </section>
 
-    <section th:each="car : ${userCars}" th:object="${car}" class="cars" id="my-cars">
+    <section class="cars" id="my-cars">
         <div class="heading">
             <span th:text="|My Cars: ${currentUserInfo.username}|"></span>
             </div>
 
-        <div class="cars-container container">
+        <div th:each="car : ${userCars}" th:object="${car}" class="cars-container container">
             <div  th:href="@{cars/car-detail{id}(id=*{id})}" class="box">
                 <img th:src="*{thumbnailUrl}" alt="">
                 <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>

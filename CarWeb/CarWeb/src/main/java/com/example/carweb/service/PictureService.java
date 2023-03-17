@@ -1,11 +1,13 @@
 package com.example.carweb.service;
 
+import com.example.carweb.model.entity.Car;
 import com.example.carweb.model.entity.Picture;
 import com.example.carweb.repo.PictureRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Set;
 
 @Service
@@ -27,15 +29,9 @@ public class PictureService {
 
     }
 
-    public Set<Picture> findPictures(Long carId, MultipartFile picture) throws IOException {
-        Set<Picture> carPictures = pictureRepository.findAllByCarId(carId).orElse(null);
-
-        if (carPictures.size() == 0){
-            Picture images = savePicture(picture);
-            carPictures.add(images);
-        }
-
-        return carPictures;
-
+    public Car findPictures(Car car, MultipartFile picture) throws IOException {
+        Picture images = savePicture(picture);
+        car.setPictures(Collections.singleton(images));
+        return car;
     }
 }

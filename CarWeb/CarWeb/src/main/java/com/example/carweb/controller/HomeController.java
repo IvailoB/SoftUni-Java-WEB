@@ -30,12 +30,13 @@ public class HomeController {
 
     @GetMapping
     public String getAllCars(Model model) {
-        var carsViewDTOStream = carService.getAllCars()
-                .stream().map(c -> new CarsViewDTO(c.getId(),
-                        c.getMake(),c.getModel(),c.getPrice(),
-                        carService.findFirstPictureUrl(c.getPictures()),c.getStatus()))
-                .collect(Collectors.toList());
-        model.addAttribute("cars", carsViewDTOStream);
+        //todo razkomentirai sled kato dobavish snimki
+//        var carsViewDTOStream = carService.getAllCars()
+//                .stream().map(c -> new CarsViewDTO(c.getId(),
+//                        c.getMake(),c.getModel(),c.getPrice(),
+//                        carService.findFirstPictureUrl(c.getPictures()),c.getStatus()))
+//                .collect(Collectors.toList());
+//        model.addAttribute("cars", carsViewDTOStream);
 
         return "index";
     }

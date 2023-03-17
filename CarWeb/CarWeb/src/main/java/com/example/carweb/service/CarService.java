@@ -7,6 +7,7 @@ import com.example.carweb.model.view.CarsViewDTO;
 import com.example.carweb.repo.CarRepository;
 import com.example.carweb.util.LoggedUser;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,7 +56,7 @@ public class CarService {
         return pictures.stream().findFirst().map(p -> p.getName()).orElse("N/A");
     }
 
-    public void addCar(AddCarDTO addCarDTO) throws IOException {
+    public Car addCar(AddCarDTO addCarDTO) throws IOException {
         Car car = new Car();
 
         car.setMake(addCarDTO.getMake());
@@ -72,10 +73,10 @@ public class CarService {
 
         car.setSeller(userService.findUserById(addCarDTO.getId()));
         car.setTown(townService.findTownByPostcode(addCarDTO.getTownName(), addCarDTO.getPostcode()));
-        car.setPictures(pictureService.findPictures(car.getId(), addCarDTO.getPicture()));
 
+        pictureService.findPictures(car,addCarDTO.getPicture());
 
-        carRepository.save(car);
+        return carRepository.save(car);
 //        pictureService.savePicture(addCarDTO.getPicture());
 
 //        Set<Picture> carPictures = pictureService.findAllByCarId(car.getId());

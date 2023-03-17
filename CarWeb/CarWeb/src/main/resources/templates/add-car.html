@@ -15,6 +15,11 @@
   <form th:object="${addCarDTO}"
         enctype="multipart/form-data"
         method="POST" action="/cars/add">
+    <input
+            type="hidden"
+            th:name="${_csrf.parameterName}"
+            th:value="${_csrf.token}" />
+
     <div class="form-group">
       <label for="make">Make:</label>
       <input th:field="*{make}" th:errorclass="'is-invalid bg-danger'" type="text" id="make" name="make" required>
