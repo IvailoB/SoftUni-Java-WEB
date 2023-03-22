@@ -17,18 +17,10 @@ import java.util.stream.Collectors;
 public class CarService {
     private final CarRepository carRepository;
     private final ImageCloudService imageCloudService;
-    private final PictureService pictureService;
-    private final UserService userService;
-    private final TownService townService;
-    private final LoggedUser loggedUser;
 
-    public CarService(CarRepository carRepository, ImageCloudService imageCloudService, PictureService pictureService, UserService userService, TownService townService, LoggedUser loggedUser) {
+    public CarService(CarRepository carRepository, ImageCloudService imageCloudService) {
         this.carRepository = carRepository;
         this.imageCloudService = imageCloudService;
-        this.pictureService = pictureService;
-        this.userService = userService;
-        this.townService = townService;
-        this.loggedUser = loggedUser;
     }
 
     public Set<CarsViewDTO> getCarFromCurrentUser(Long id) {

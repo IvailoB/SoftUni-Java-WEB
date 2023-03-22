@@ -1,57 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <meta charset="UTF-8">
     <title>My Profile</title>
     <link rel="stylesheet" href="/css/profile.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  </head>
-  <body>
-    
-    <header th:replace="~{/fragments/common::navigation}">
-  </header>
+</head>
+<body>
 
-    <main>
-      <section class="profile-info">
+<header th:replace="~{/fragments/common::navigation}">
+</header>
+
+<main>
+    <section class="profile-info">
         <div class="avatar-container">
-          <img src="https://via.placeholder.com/200" alt="Profile Picture">
-          <button class="change-avatar-btn">Change Avatar</button>
-        </div>
-        <div th:object="${user}" class="user-info">
-          <h1 th:text="|Hello *{firstName} *{lastName}!|"></h1>
-          <p th:text="|@*{email}|" class="username"></p>
-          <p class="bio"></p>
-          <ul class="user-stats">
-            <li><strong>Posts:</strong> 27</li>
-            <li><strong>Followers:</strong> 352</li>
-            <li><strong>Following:</strong> 102</li>
-          </ul>
-        </div>
-      </section>
-      <section class="recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-          <li>
-            <div class="post-header">
-              <div class="cars-container container">
-                <div class="box">
-                  <img src="/images/car3.jpg" alt="">
-                  <<h2 class="make"> MAke MODEL</h2>
-                  <h2 class="status">STATUS</h2>
-                  <h2 class="price">PRICE</h2>
-                  <a th:href="@{cars/buy/{id}(id=*{id})}"
-                     class="ui-button">Buy Car</a>
-                </div>
+            <img src="https://www.shutterstock.com/image-vector/man-icon-vector-260nw-1040084344.jpg"
+                 alt="Profile Picture">
+            <div class="form-group container-upload">
+                <label for="picture">Change profile picture</label>
+                <input class="upload-img" type="file" id="picture" name="picture" accept="image/*">
+                <label class="upload-img-label" for="picture">Choose a Photos</label>
             </div>
-          </li>
-        </ul>
-      </section>
-    </main>
-
-    <section th:replace="~{/fragments/common::footer}">
+            <div th:object="${user}" class="user-info">
+                <h1 th:text="|Hello *{firstName} *{lastName}!|"></h1>
+                <p th:text="|@*{email}|" class="username"></p>
+                <p class="bio"></p>
+                <ul class="user-stats">
+                    <li><strong>Posts:</strong> 27</li>
+                    <li><strong>Followers:</strong> 352</li>
+                    <li><strong>Following:</strong> 102</li>
+                </ul>
+            </div>
     </section>
+</main>
+
+<section th:replace="~{/fragments/common::footer}">
+</section>
 
 
-  </body>
+</body>
 </html>

@@ -66,6 +66,16 @@ img {
     opacity: 1;
 }
 
+
+.ui-button{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    color: white;
+    background-color: var(--main-color);
+    padding: 20px;
+}
+
 .car-info {
     display: flex;
     gap: 18rem;

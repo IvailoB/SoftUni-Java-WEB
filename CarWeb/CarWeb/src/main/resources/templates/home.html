@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +26,13 @@
             <img src="/images/homeimg.jpg">
         </div>
         <div class="home-text">
-            <h1>We Have Everything <br>Your <span>Car</span> Need</h1>
+            <h1>We Have Everything <br>Your <span>Car</span> Needs</h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deleniti <br> tempore, molestiae iste
                 velit corporis
             </p>
 
-            <a href="#" class="btn">Discover Now</a>
+            <a href="heading" class="btn">Discover Now</a>
         </div>
     </section>
 
@@ -40,25 +41,17 @@
             <span th:text="|My Cars: ${currentUserInfo.username}|"></span>
             </div>
 
-        <div th:each="car : ${userCars}" th:object="${car}" class="cars-container container">
-            <a  th:href="@{cars/details/{id}(id=*{id})}" class="box">
+        <div class="cars-container container">
+            <a th:each="car : ${userCars}" th:object="${car}"
+               th:href="@{/cars/details/{id}(id=*{id})}" class="box">
                 <img th:src="*{thumbnailUrl}" alt="">
                 <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
                 <h2 th:text="*{status} " class="status">STATUS</h2>
                 <h2 th:text="|*{price} €|" class="price">PRICE</h2>
                 <h2 class="ui-button"
-                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
+                    th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
             </a>
         </div>
-
-            <a class="box">
-                <img src="/images/rols.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 class="ui-button">Buy Car</h2>
-            </a>
-
     </section>
 
 
@@ -70,51 +63,16 @@
         </div>
 
         <div class="cars-container container">
-            <a class="box">
-                <img src="/images/car3.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 th:href="@{cars/buy/{id}(id=*{id})}"
-                        class="ui-button">Buy Car</h2>
-            </a>
-            <a class="box">
-                <img src="/images/car4.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 class="ui-button">Buy Car</h2>
-            </a>
-            <a class="box">
-                <img src="/images/car5.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 class="ui-button">Buy Car</h2>
-            </a>
-            <a class="box">
-                <img src="/images/honda-civic.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 class="ui-button">Buy Car</h2>
-            </a>
-            <a class="box">
-                <img src="/images/rols.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 class="ui-button">Buy Car</h2>
-            </a>
-            <a class="box">
-                <img src="/images/rols.jpg" alt="">
-                <h2 class="make"> MAke MODEL</h2>
-                <h2 class="status">STATUS</h2>
-                <h2 class="price">PRICE</h2>
-                <h2 class="ui-button">Buy Car</h2>
+            <a th:each="car : ${carsFromOtherUsers}" th:object="${car}"
+               th:href="@{/cars/details/{id}(id=*{id})}" class="box">
+                <img th:src="*{thumbnailUrl}" alt="">
+                <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
+                <h2 th:text="*{status} " class="status">STATUS</h2>
+                <h2 th:text="|*{price} €|" class="price">PRICE</h2>
+                <h2 class="ui-button"
+                    th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
             </a>
         </div>
-
     </section>
 
     <section class="about container" id="ab">
@@ -125,7 +83,7 @@
             <span>About Us</span>
             <h2>Cheap price with <br>Quality Cars</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, animi.</p>
-            <a href="#" class="btn">Learn More</a>
+            <a href="/aboutUs" class="btn">Learn More</a>
         </div>
     </section>
 

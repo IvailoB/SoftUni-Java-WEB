@@ -32,15 +32,18 @@ public class HomeController {
     public String getAllCars(Model model) {
         var carsViewDTOStream = carService.getAllCars()
                 .stream().map(c -> new CarsViewDTO(c.getId(),
-                        c.getMake(),c.getModel(),c.getPrice(),
-                        carService.findFirstPictureUrl(c.getPictures()),c.getStatus()))
+                        c.getMake(), c.getModel(), c.getPrice(),
+                        carService.findFirstPictureUrl(c.getPictures()), c.getStatus()))
                 .collect(Collectors.toList());
         model.addAttribute("cars", carsViewDTOStream);
 
         return "index";
     }
 
-
+    @GetMapping("/aboutUs")
+    public String aboutUs() {
+        return "about-us";
+    }
 
     @GetMapping("/home")
     String home(Principal principal, Model model) {

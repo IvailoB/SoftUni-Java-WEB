@@ -82,20 +82,6 @@ public class CarController {
         carService.createCar(car, addCarDTO.getPicture());
 
         return "redirect:/cars/details/" + car.getId();
-
-//        if (bindingResult.hasErrors()) {
-//
-//            redirectAttributes.addFlashAttribute("addCarDTO", addCarDTO);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addCarDTO", bindingResult);
-//
-//            return "redirect:add";
-//        }
-//
-//        addCarDTO.setId(userService.getUserByUsername(principal.getName()).getId());
-//
-//        Car car = carService.addCar(addCarDTO);
-
-
     }
 
     @GetMapping("/buy/{id}")

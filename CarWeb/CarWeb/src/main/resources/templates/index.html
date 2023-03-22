@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +26,13 @@
         <img src="/images/homeimg.jpg">
     </div>
     <div class="home-text">
-        <h1>We Have Everything <br>Your <span>Car</span> Need</h1>
+        <h1>We Have Everything <br>Your <span>Car</span> Needs</h1>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Error deleniti <br> tempore, molestiae iste
             velit corporis
         </p>
 
-        <a href="#" class="btn">Discover Now</a>
+        <a href="heading" class="btn">Discover Now</a>
     </div>
 </section>
 
@@ -44,42 +45,17 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, consequatur.</p>
     </div>
 
-        <div class="cars-container container">
-            <a th:each="car : ${cars}" th:object="${car}"
-               th:href="@{/cars/details/{id}(id=*{id})}" class="box">
-                <img th:src="*{thumbnailUrl}" alt="">
-                <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
-                <h2 th:text="*{status} " class="status">STATUS</h2>
-                <h2 th:text="|*{price} €|" class="price">PRICE</h2>
-                <h2 class="ui-button"
-                   th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
-            </a>
-    <!--        <div class="cars-container container">-->
-    <!--            <div class="box">-->
-    <!--                <img src="/images/car3.jpg" alt="car image">-->
-    <!--                <h2>Porsche Car</h2>-->
-    <!--            </div>-->
-    <!--            <div class="box">-->
-    <!--                <img src="/images/car4.jpg" alt="">-->
-    <!--                <h2>Car Car</h2>-->
-    <!--            </div>-->
-    <!--            <div class="box">-->
-    <!--                <img src="/images/car5.jpg" alt="">-->
-    <!--                <h2>Car Car</h2>-->
-    <!--            </div>-->
-    <!--            <div class="box">-->
-    <!--                <img src="/images/honda-civic.jpg" alt="">-->
-    <!--                <h2>Car Car</h2>-->
-    <!--            </div>-->
-    <!--            <div class="box">-->
-    <!--                <img src="/images/rols.jpg" alt="">-->
-    <!--                <h2>Toyota Car</h2>-->
-    <!--            </div>-->
-    <!--            <div class="box">-->
-    <!--                <img src="/images/rols.jpg" alt="">-->
-    <!--                <h2>Toyota Car</h2>-->
-    <!--            </div>-->
-    <!--        </div>-->
+    <div class="cars-container container">
+        <a th:each="car : ${cars}" th:object="${car}"
+           th:href="@{/cars/details/{id}(id=*{id})}" class="box">
+            <img th:src="*{thumbnailUrl}" alt="">
+            <h2 th:text="|*{make} *{model}|" class="make"> MAke MODEL</h2>
+            <h2 th:text="*{status} " class="status">STATUS</h2>
+            <h2 th:text="|*{price} €|" class="price">PRICE</h2>
+            <h2 class="ui-button"
+                th:href="@{cars/buy/{id}(id=*{id})}">Buy Car</h2>
+        </a>
+    </div>
 
 </section>
 
@@ -91,7 +67,7 @@
         <span>About Us</span>
         <h2>Cheap price with <br>Quality Cars</h2>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, animi.</p>
-        <a href="#" class="btn">Learn More</a>
+        <a href="/aboutUs" class="btn">Learn More</a>
     </div>
 </section>
 

@@ -57,25 +57,6 @@ public class UserController {
         return "redirect:login";
     }
 
-
-//    @GetMapping("/profile")
-//    public String profile(Principal principal, Model model) {
-//        String username = principal.getName();
-//        User user = userService.getUserByUsername(username);
-
-//        UserProfileView userProfileView = new UserProfileView(
-//                username,
-//                user.getEmail(),
-//                user.getFullName(),
-//                user.getAge(),
-//                user.getLevel() != null ? user.getLevel().name() : "BEGINNER"
-//        );
-//
-//        model.addAttribute("user", userProfileView);
-
-//        return "profile";
-//    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
