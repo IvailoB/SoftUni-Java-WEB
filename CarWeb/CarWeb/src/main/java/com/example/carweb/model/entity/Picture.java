@@ -22,4 +22,8 @@ public class Picture extends BaseEntity {
 
     @ManyToOne
     private Car car;
+
+    public Picture(String url) {
+        this.url = url;
+    }
 }

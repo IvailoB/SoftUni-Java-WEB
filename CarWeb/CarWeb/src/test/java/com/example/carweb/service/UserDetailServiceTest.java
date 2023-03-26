@@ -6,7 +6,9 @@ import com.example.carweb.repo.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,31 +19,18 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class UserDetailServiceTest {
 
     private UserDetailService toTest;
 
     @Mock
-    private UserService userService;
-
-    @Mock
-    private UserRepository userRepository;
-
-    @Mock
-    private RoleRepository roleRepository;
-
-    @Mock
-    private PasswordEncoder passwordEncoder;
+    private UserService mockUserService;
 
     @BeforeEach
     void setUp() {
-        userService = new UserService(
-                userRepository,
-                roleRepository,
-                passwordEncoder
-        );
         toTest = new UserDetailService(
-                userService
+                mockUserService
         );
     }
 
@@ -52,10 +41,7 @@ public class UserDetailServiceTest {
         testUser.setPassword("123");
         testUser.setRoles(List.of());
 
-      when(userRepository.findByUsername("admin"))
-                .thenReturn(Optional.of(testUser));
-
-        when(userService.getUserByUsername("admin"))
+      when(mockUserService.getUserByUsername("admin"))
                 .thenReturn(testUser);
 
         UserDetails adminUser = toTest.loadUserByUsername("admin");

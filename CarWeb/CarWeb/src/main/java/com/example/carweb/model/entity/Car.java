@@ -5,6 +5,7 @@ import com.example.carweb.model.enums.EngineEnum;
 import com.example.carweb.model.enums.StatusCarEnum;
 import com.example.carweb.model.enums.Transmission;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -59,6 +60,18 @@ public class Car extends BaseEntity {
     @ManyToOne
     private Town town;
 
-    @OneToMany (mappedBy = "car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Picture> pictures;
+
+
+    public Car(String make, String model, String color, BigDecimal price, String description, String year, String kilometers) {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.price = price;
+        this.description = description;
+        this.year = year;
+        this.kilometers = kilometers;
+    }
+
 }
