@@ -85,7 +85,6 @@ public class UserControllerIT {
         // Perform GET request to "/profile"
         mockMvc.perform(get("/users/profile"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(model().attributeExists("user"))
                 .andExpect(model().attribute("user", Matchers.samePropertyValuesAs(profileView)))
                 .andExpect(view().name("profile"));
     }

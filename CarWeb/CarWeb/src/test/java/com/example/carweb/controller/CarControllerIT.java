@@ -112,7 +112,7 @@ public class CarControllerIT {
     void testBuyOffer() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/cars/buy/1"))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.redirectedUrl("redirect:/home"));
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/home"));
     }
 
 }
